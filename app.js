@@ -638,7 +638,8 @@ const booking = {
 
 function openBooking() {
   if (!bookingView) return;
-  document.querySelector("main.page").style.display = "none";
+  if (els.homeView) els.homeView.hidden = true;
+  if (els.gameView) els.gameView.hidden = true;
   bookingView.hidden = false;
   booking.month = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
   booking.step = 1;
