@@ -36,6 +36,13 @@ const els = {
   tabHome: document.getElementById("tab-home"),
   tabFav: document.getElementById("filter-favourites"),
   tabRes: document.getElementById("tab-reserve"),
+
+  // Forside (home-view)
+  homeView: document.getElementById("home-view"),
+  gameView: document.getElementById("game-view"),
+  logoLink: document.getElementById("logo-home-link"),
+  homeCtaGames: document.getElementById("home-cta-games"),
+  homeCtaReserve: document.getElementById("home-cta-reserve"),
 };
 
 // Modal (spildetaljer)
