@@ -161,13 +161,14 @@ function bindEvents() {
 
   // Tabbar
   els.tabAll?.addEventListener("click", () => {
-    if (!bookingView?.hidden) closeBooking();
+    showGames();
     SHOW_FAVS = false;
     setActiveTab(els.tabAll);
     render();
   });
 
   els.tabFav?.addEventListener("click", () => {
+    showGames();
     SHOW_FAVS = true;
     setActiveTab(els.tabFav);
     render();
@@ -179,12 +180,15 @@ function bindEvents() {
   });
 
   els.tabHome?.addEventListener("click", () => {
-    if (!bookingView?.hidden) closeBooking();
-    SHOW_FAVS = false;
-    setActiveTab(null);
-    render();
+    showHome();
   });
 
+  //Logoet fører altid til forsiden, uanset hvor man er i appen
+  els.logoLink?.addEventListener("click", () => {
+    showHome();
+  });
+
+  //Forsidens egne call to 
   // Tilbageknap – luk modal/booking hvis åbne
   els.backBtn?.addEventListener("click", () => {
     if (modal && modal.hidden === false) {
