@@ -653,12 +653,8 @@ function openBooking() {
 function closeBooking() {
   if (!bookingView) return;
   bookingView.hidden = true;
-  document.querySelector("main.page").style.display = "";
-  document
-    .querySelectorAll(".tabbar .tab")
-    .forEach((t) => t.classList.remove("active"));
-  document.getElementById("tab-home")?.classList.add("active");
-  updateBackIcon();
+ // Efter booking lukkes, vender tilbage til forsiden
+ showHome();
 }
 
 function renderBooking() {
