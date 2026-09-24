@@ -83,7 +83,7 @@ body {
   display: block;
   height: 96px;
   /* logo-størelse */
-  
+
 }
 /* tilbage-knap i topbaren */
 .icon-btn {
@@ -890,3 +890,33 @@ body {
     transition: none !important;
   }
 }
+
+/* 
+FORSIDE (home-view)
+*/
+.home[hidden] {
+  display: none;
+}
+
+.home {
+  max-width:900px;
+  margin: 0 auto;
+  padding: 16px 20px 140px;
+  /* ekstra bund-padding så tabbar ikke dækker*/
+  text-align: center;
+}
+
+.home-hero {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.home-tagline {
+  font-size: clamp(24px, 4.5vw, 36px);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--brown);
+  margin: 8px 0 0;
+}
+
