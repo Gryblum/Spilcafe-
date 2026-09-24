@@ -77,10 +77,36 @@ let GAMES = [];
 let SHOW_FAVS = false;
 let FAVS = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
 
+// FORSIDE / VISNINGSSTYRING
+
+// ---------------------------
+// Appen har tre "hovedvisninger", som aldrig vises samtidig:
+// home-view (forsiden), game-view (søg/filtre/spiloversigt) og
+// booking-view (reservationsflowet). Disse to funktioner sørger
+// for at kun én visning er synlig ad gangen.
+
+function showHome() {
+  if (els.homeView) els.homeView.hidden = false;
+  if (els.gameView) els.gameView.hidden = true;
+  if (bookingView) bookingView.hidden = true;
+  document
+    .querySelectorAll(".tabbar .tab")
+    .forEach((t) => t.classList.remove("active"));
+  updateBackIcon();
+}
+
+function showGames() {
+  if (els.homeView) els.homeView.hidden = true;
+  if (els.gameView) els.gameView.hidden = false;
+  if (bookingView) bookingView.hidden = true;
+  updateBackIcon();
+}
+
 // INIT
 
 init();
 async function init() {
+  showHome(); // forsiden er altid det første brugeren ser
   try {
     const res = await fetch(DATA_URL);
     if (!res.ok) throw new Error("Kunne ikke hente data");
@@ -188,7 +214,19 @@ function bindEvents() {
     showHome();
   });
 
-  //Forsidens egne call to 
+  //Forsidens egne CTA'er
+  els.homeCtaGames?.addEventListener("click", () => {
+    showGames();
+    SHOW_FAVS = false;
+    setActiveTab(els.tabAll);
+    render();
+  });
+
+  els.homeCtaReserve?.addEventListener("click", () => {
+    setActiveTab(els.tabRes);
+    openBooking();
+  });
+
   // Tilbageknap – luk modal/booking hvis åbne
   els.backBtn?.addEventListener("click", () => {
     if (modal && modal.hidden === false) {
