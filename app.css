@@ -59,18 +59,32 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Logoet svæver ovenpå bjælken */
-.header-logo {
+/* Logoet svæver ovenpå bjælken - nu som klikbar ("hjem") */
+.logo-btn {
+  appearance: none;
+  border: 0;
+  background: transparent; 
+  padding: 0;
   position: absolute;
   left: 50%;
   top: 6px;
-  /* sænk/hæv logoet i bjælken */
   transform: translateX(-50%);
-  height: 96px;
-  /* logo-størrelse */
   z-index: 10;
+  cursor: pointer;
+  border-radius: 12px;
 }
 
+.logo-btn:focus-visible {
+  outline: 2px solid var(--light);
+  outline-offset: 4px;
+}
+
+.header-logo {
+  display: block;
+  height: 96px;
+  /* logo-størelse */
+  
+}
 /* tilbage-knap i topbaren */
 .icon-btn {
   appearance: none;
