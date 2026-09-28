@@ -89,14 +89,22 @@
 </section>
 
   <main class="page" id="game-view" hidden>
-    
-  <button class="icon-btn" aria-label="Søg">
-  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <circle cx="11" cy="11" r="7" />
-    <path d="M20 20l-4-4" />
-  </svg>
-</button>
-  
+    <div class="searchbar" role="search">
+      <button class="icon-btn" type="button" aria-label="Søg">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-4-4" />
+        </svg>
+      </button>
+
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Søg efter spil..."
+        aria-label="Søg efter spil"
+      />
+    </div>
+
     <!-- Filtre og ryd filtre -->
     <div class="filterbar">
       <div class="filters-row">
@@ -213,6 +221,7 @@
 
       <!-- REGELSEKTION -->
       <section id="modal-rules-wrap" class="modal-rules" hidden>
+        <button id="rules-toggle" class="rules-btn" aria-expanded="false">▸ Regler</button>
         <div id="rules-content" class="rules-content">
           <pre id="modal-rules"></pre>
         </div>

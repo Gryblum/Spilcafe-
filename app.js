@@ -556,7 +556,7 @@ function openModalById(id) {
     g.rules || "Der er endnu ikke tilføjet regler for dette spil.";
   mRulesWrap.hidden = false;
   rulesContent.classList.remove("open");
-  rulesBtn.setAttribute("aria-expanded", "false");
+  rulesBtn?.setAttribute("aria-expanded", "false");
 
   modal.hidden = false;
   document.body.style.overflow = "hidden";
