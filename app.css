@@ -375,62 +375,58 @@ body {
 }
 
 /* =========================================================
-  TABBAR – altid klikbar, hover-effekt, alle lige store
+  TABBAR – bundnavigation
   ========================================================= */
 .tabbar {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 8000;
-  /* OVER alt almindeligt indhold/booking */
-  background: #efd8c6e6;
-  backdrop-filter: saturate(1.2) blur(6px);
-  border-top: 1px solid #e2cfc3;
+  z-index: 8000; /* over alt almindeligt indhold og booking */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 10px 8px;
-  /* lidt større samlet højde */
+  background: #efd8c6; /* helt dækkende, så indhold ikke skinner igennem */
+  border-top: 1px solid #e2cfc3;
 }
 
-/* Gør ALLE knapper ens (inkl. huset) */
+/* Fælles udgangspunkt for alle knapper (inkl. huset) */
 .tabbar button {
   appearance: none;
   border: 0;
   background: transparent;
-  color: #7b5647;
-  text-align: center;
+  color: var(--brown-2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
   padding: 10px 4px;
-  /* lidt større */
-  font-size: 15px;
-  /* større tekst */
-  outline: 0;
+  border-radius: 12px;
+  text-align: center;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.18s ease, background-color 0.18s ease,
     color 0.18s ease, box-shadow 0.18s ease;
-  border-radius: 12px;
-  /* rundet baggrund ved hover */
 }
 
-/* Ikon + label */
-.tabbar button span {
-  font-size: 20px;
-  line-height: 1;
+/* SVG-ikoner: farven følger knappens tekstfarve */
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .tabbar button small {
-  display: block;
   font-size: 12px;
 }
 
 /* Aktiv tilstand */
 .tabbar .tab.active {
-  color: #3b2118;
+  color: var(--brown);
   font-weight: 700;
 }
 
@@ -438,12 +434,12 @@ body {
   content: "";
   width: 24px;
   height: 3px;
-  background: #3b2118;
-  border-radius: 999px;
   margin-top: 4px;
+  border-radius: 999px;
+  background: currentColor;
 }
 
-/* Konsistent hover/focus på ALLE knapper inkl. huset */
+/* Hover/fokus/tryk – ens på alle knapper */
 .tabbar button:hover,
 .tabbar button:focus-visible,
 .tabbar button:active {
@@ -452,9 +448,8 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* Tilgængelighed – undgå grimme outlines men behold fokus */
 .tabbar button:focus-visible {
-  outline: 2px solid rgba(59, 33, 24, 0.35);
+  outline: 2px solid var(--brown);
   outline-offset: 2px;
 }
 

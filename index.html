@@ -221,27 +221,49 @@
 </div>
 
     <!-- Bundnavigation -->
-    <nav class="tabbar tabbar--fab">
+    <nav class="tabbar tabbar--fab" aria-label="Bundnavigation">
   <button class="tab" id="tab-all">
-    <span>🎮</span><small>Alle spil</small>
+    <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <circle cx="8.5" cy="8.5" r="1" fill="currentColor" />
+      <circle cx="15.5" cy="8.5" r="1" fill="currentColor" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
+      <circle cx="8.5" cy="15.5" r="1" fill="currentColor" />
+      <circle cx="15.5" cy="15.5" r="1" fill="currentColor" />
+    </svg>
+    <small>Alle spil</small>
   </button>
 
   <button class="tab" id="tab-reserve">
-    <span>📅</span><small>Reserver bord</small>
+    <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 10h18M8 3v4M16 3v4" />
+    </svg>
+    <small>Reserver bord</small>
   </button>
 
-  <!-- den runde, forhøjede hjem-knap -->
-  <button class="home-fab" id="tab-home" aria-label="Hjem">🏠</button>
+  <button class="home-fab" id="tab-home" aria-label="Forside">
+    <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3 11.5 12 4l9 7.5" />
+      <path d="M5.5 10v10h13V10" />
+    </svg>
+  </button>
 
   <button class="tab" id="filter-favourites">
-    <span>❤️️</span><small>Favoritter</small>
+    <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 20.5C12 20.5 4 15.5 4 9.5A4.5 4.5 0 0 1 12 6.7 4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11z" />
+    </svg>
+    <small>Favoritter</small>
   </button>
 
   <button class="tab" id="tab-profile">
-    <span>👤</span><small>Profil</small>
+    <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+    </svg>
+    <small>Profil</small>
   </button>
 </nav>
-
 
     <footer class="legal">© Spilcaféen</footer>
     <script src="app.js"></script>
