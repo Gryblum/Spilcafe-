@@ -140,11 +140,30 @@ function initHomeCarousel() {
   if (slides.length < 2) return;
 
   let index = 0;
+  let timer = null;
 
-  setInterval(() => {
+  function goToNextSlide() {
     index = (index + 1) % slides.length;
     track.style.transform = `translateX(-${index * 100}%)`;
-  }, 3000);
+  }
+
+  function startCarousel() {
+    if (timer) return;
+    timer = setInterval(goToNextSlide, 3000);
+  }
+
+  function stopCarousel() {
+    if (!timer) return;
+    clearInterval(timer);
+    timer = null;
+  }
+
+  track.addEventListener("mouseenter", stopCarousel);
+  track.addEventListener("mouseleave", startCarousel);
+  track.addEventListener("focusin", stopCarousel);
+  track.addEventListener("focusout", startCarousel);
+
+  startCarousel();
 }
 
 // UI INITIALISERING (selects, events)
