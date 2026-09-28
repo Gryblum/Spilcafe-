@@ -125,9 +125,7 @@ function showHome() {
   if (els.homeView) els.homeView.hidden = false;
   if (els.gameView) els.gameView.hidden = true;
   if (bookingView) bookingView.hidden = true;
-  document
-    .querySelectorAll(".tabbar .tab")
-    .forEach((t) => t.classList.remove("active"));
+  setActiveTab(els.tabHome);
   updateBackIcon();
 }
 
@@ -136,6 +134,7 @@ function showGames() {
   if (els.gameView) els.gameView.hidden = false;
   if (bookingView) bookingView.hidden = true;
   toggleHomeSocial(false);
+  setActiveTab(null);
   updateBackIcon();
 }
 
@@ -321,9 +320,11 @@ function bindEvents() {
 // Marker aktiv tab
 function setActiveTab(el) {
   document
-    .querySelectorAll(".tabbar .tab")
+    .querySelectorAll(".tabbar button")
     .forEach((t) => t.classList.remove("active"));
-  if (el?.classList.contains("tab")) el.classList.add("active");
+  if (el?.classList.contains("tab") || el?.classList.contains("home-fab")) {
+    el.classList.add("active");
+  }
 }
 
 // RYD FILTRE
