@@ -1009,6 +1009,58 @@ FORSIDE (home-view)
   background: var(--light);
 }
 
+.home-social {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0 20px 0;
+}
+
+.home-social-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.2;
+  color: var(--brown);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--brown);
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 2px;
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 .home-carousel {
   position: relative;
   width: 100%;
@@ -1045,6 +1097,78 @@ FORSIDE (home-view)
 
 @media (prefers-reduced-motion: reduce) {
   .home-btn {
+    transition: none !important;
+  }
+}
+
+/* FORSIDE - "Følt med i hverdagen" */
+
+.home-social {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--ring);
+}
+
+.home-social-title {
+  margin: 0;
+  font-size: clamp(24px, 4.5vw, 36px);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--brown);
+}
+
+.social-links {
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-link {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--brown);
+  color: var(--light);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.social-link svg {
+  width: 28px;
+  height: 28px;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  background: var(--brown-2);
+  transform: scale(1.08);
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 3px;
+}
+
+@media (min-width: 800px) {
+  .home-social {
+    grid-template-columns: 1fr auto;
+    justify-items: start;
+    align-items: center;
+  }
+
+  .home-social-title {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-link {
     transition: none !important;
   }
 }
