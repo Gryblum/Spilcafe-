@@ -55,10 +55,9 @@
       <button class="icon-btn" aria-label="Søg">🔍</button>
     </div>
   
-    <!-- 👇 NY placering af filtre + Ryd filtre -->
+    <!-- Filtre og ryd filtre -->
     <div class="filterbar">
       <div class="filters-row">
-        <!-- alle dine filter-dropdowns flyttes herned -->
         <div class="filter-dropdown">
           <button class="pill">Kategori ⌄</button>
           <div class="dropdown-menu">
@@ -115,15 +114,8 @@
         <div class="filter-dropdown"><button class="pill" data-sort="none">Nyeste</button></div>
       </div>
   
-      <!-- højre side -->
       <button class="clear-pill" id="clear-filters-pill" type="button">Ryd filtre</button>
     </div>
-  
-    <!-- resten af indholdet -->
-    <section id="game-list" class="card-grid"></section>
-  </main>
-
-    
 
       <!-- Skjult lager til select/inputs som koden bruger (ikke synligt for brugeren) -->
       <div class="filters-storage" hidden>
@@ -152,17 +144,15 @@
           <option value="rating">Rating (højeste først)</option>
         </select>
       
-        <!-- eksisterende clear-knap er ikke længere synlig, men kan gerne blive -->
+
         <button id="clear-filters" type="button">Ryd (skjult)</button>
       </div>
 
-      </details>
 
       <!-- Grid med spil -->
       <section id="game-list" class="card-grid"></section>
     </main>
 
-<!-- Modal: stort kort -->
 <!-- Modal: stort kort -->
 <div id="game-modal" class="modal" hidden>
   <div class="modal-backdrop" data-close></div>
@@ -179,7 +169,7 @@
       <p id="modal-desc"></p>
       <div class="modal-details" id="modal-details"></div>
 
-      <!-- NY REGELSEKTION -->
+      <!-- REGELSEKTION -->
       <section id="modal-rules-wrap" class="modal-rules" hidden>
         <button id="rules-toggle" class="rules-btn" aria-expanded="false">▸ Regler</button>
         <div id="rules-content" class="rules-content">
@@ -190,7 +180,7 @@
   </article>
 </div>
 
-    <!-- Bundnavigation som i mockup -->
+    <!-- Bundnavigation -->
     <nav class="tabbar tabbar--fab">
   <button class="tab" id="tab-all">
     <span>🎮</span><small>Alle spil</small>
