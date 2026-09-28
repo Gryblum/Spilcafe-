@@ -1012,8 +1012,11 @@ FORSIDE (home-view)
 .home-social {
   display: grid;
   gap: 12px;
-  margin: 24px 0 0;
+  margin: 24px auto 0;
   padding: 0 20px 0;
+  width: min(100%, 1100px);
+  justify-items: center;
+  text-align: center;
 }
 
 .home-social-title {
@@ -1026,6 +1029,7 @@ FORSIDE (home-view)
 .social-links {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -1035,8 +1039,8 @@ FORSIDE (home-view)
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 12px;
   background: var(--brown);
   color: #fff;
@@ -1055,18 +1059,21 @@ FORSIDE (home-view)
   outline-offset: 2px;
 }
 
-.social-link svg {
-  width: 20px;
-  height: 20px;
+.social-link img {
+  width: 24px;
+  height: 24px;
   display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .home-carousel {
   position: relative;
-  width: 100%;
+  width: calc(100% + 24px);
+  margin-left: -12px;
+  margin-top: 42px;
   overflow: hidden;
-  margin-top: 24px;
-  border-radius: 18px;
+  border-radius: 0;
 }
 
 .home-carousel-track {
@@ -1075,23 +1082,32 @@ FORSIDE (home-view)
   transition: transform 0.6s ease-in-out;
 }
 
-.home-carousel-track img {
-  flex: 0 0 50%;
-  width: 50%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  border-radius: 18px;
+.home-carousel-slide {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   padding: 0 8px;
   box-sizing: border-box;
 }
 
+.home-carousel-track img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px;
+}
+
 @media (max-width: 640px) {
-  .home-carousel-track img {
-    flex-basis: 100%;
+  .home-carousel {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    padding: 0;
+    margin-left: 0;
+  }
+
+  .home-carousel-slide {
+    gap: 6px;
+    padding: 0 4px;
   }
 }
 

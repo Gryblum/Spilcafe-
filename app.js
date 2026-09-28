@@ -143,7 +143,7 @@ function initHomeCarousel() {
   let timer = null;
 
   function goToNextSlide() {
-    index = (index + 1) % slides.length;
+    index = index >= slides.length - 1 ? 0 : index + 1;
     track.style.transform = `translateX(-${index * 100}%)`;
   }
 
