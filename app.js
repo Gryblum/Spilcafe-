@@ -12,6 +12,9 @@ const els = {
   playersPill: document.getElementById("players-pill"),
   durationPill: document.getElementById("duration-pill"),
 
+  // Karrusel
+  carouselTrack: document.getElementById("home-carousel-track"),
+
   // Søg + liste
   search: document.getElementById("search-input"),
   list: document.getElementById("game-list"),
@@ -114,6 +117,7 @@ function showGames() {
 init();
 async function init() {
   showHome(); // forsiden er altid det første brugeren ser
+  initHomeCarousel();
   try {
     const res = await fetch(DATA_URL);
     if (!res.ok) throw new Error("Kunne ikke hente data");
@@ -126,6 +130,21 @@ async function init() {
     console.error(err);
     els.list.innerHTML = `<p>Kunne ikke indlæse spil.</p>`;
   }
+}
+
+function initHomeCarousel() {
+  const track = els.carouselTrack;
+  if (!track) return;
+
+  const slides = [...track.children];
+  if (slides.length < 2) return;
+
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }, 3000);
 }
 
 // UI INITIALISERING (selects, events)
