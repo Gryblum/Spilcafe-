@@ -2,12 +2,13 @@
   Farver, base og variabler
   ========================================================= */
 :root {
-  --cream: #f5ebdc;
-  --brown: #861a19;
-  --brown-2: #601210;
-  --text: #2b1a14;
+--cream: #f5ebdc;     /* sidens baggrund */
+  --cream-2: #efd8c6;   /* bundmenu */
+  --brown: #861a19;     /* primær rød: knapper, kort, overskrifter */
+  --brown-2: #601210;   /* mørk rød: hover og aktive tilstande */
+  --text: #2b1a14;      /* brødtekst */
+  --text-soft: #6e3b37; /* sekundær tekst: forklaringer, ugedage, footer */
   --light: #fff8f0;
-  --muted: #bdaaa1;
   --ring: #d9c9bf;
   --shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   --radius: 18px;
@@ -151,7 +152,7 @@ body {
 /* Standard “pill”-stil (bruges også i dropdown-trigger-knapper) */
 .pill {
   appearance: none;
-  background: #65301e;
+  background: var(--brown);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
@@ -187,7 +188,7 @@ body {
 
 .filter-dropdown .pill {
   background: var(--brown);
-  color: var(--ring);
+  color: var(--light);
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
@@ -205,7 +206,7 @@ body {
   display: none;
   flex-direction: column;
   min-width: 180px;
-  background: #f5ebdc;
+  background: var(--cream);
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   box-shadow: var(--shadow);
@@ -334,7 +335,7 @@ body {
 
 .fav.active {
   background: #fff;
-  color: #c0183c;
+  color: var(--brown);
 }
 
 .card h3 {
@@ -386,7 +387,7 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 10px 8px;
-  background: #efd8c6; /* helt dækkende, så indhold ikke skinner igennem */
+  background: var(--cream-2); /* helt dækkende, så indhold ikke skinner igennem */
   border-top: 1px solid #e2cfc3;
 }
 
@@ -395,7 +396,7 @@ body {
   appearance: none;
   border: 0;
   background: transparent;
-  color: var(--brown-2);
+  color: var(--text-soft);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -461,7 +462,7 @@ body {
 /* FOOTER */
 .legal {
   text-align: center;
-  color: #9b8479;
+  color: var(--text-soft);
   font-size: 12px;
   padding: 10px 0 80px;
 }
@@ -648,7 +649,7 @@ body {
   font-weight: 800;
   text-align: center;
   margin: 10px 0 16px;
-  color: #3b2118;
+  color: var(--brown);
 }
 
 .booking-stage {
@@ -717,7 +718,7 @@ body {
   cursor: pointer;
   font-size: 22px;
   padding: 6px 10px;
-  color: #3b2118;
+  color: var(--brown);
 }
 
 .calendar {
@@ -731,7 +732,7 @@ body {
   /* ma, ti, on ... */
   font-weight: 700;
   font-size: 14px;
-  color: #7b5647;
+  color: var(--text-soft);
 }
 
 .cal-cell {
@@ -753,7 +754,7 @@ body {
   transform: scale(1.06);
 }
 .cal-cell.selected {
-  background: #7b5647;
+  background: var(--brown-2);
   color: #fff;
 }
 .cal-cell.busy {
@@ -764,7 +765,7 @@ body {
 
 .legend {
   margin-top: 10px;
-  color: #7b5647;
+  color: var(--text-soft);
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -784,7 +785,7 @@ body {
 }
 
 .bubble {
-  background: #5b2a1a;
+  background: var(--brown);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
@@ -873,7 +874,7 @@ body {
 .success-big {
   font-size: 22px;
   font-weight: 800;
-  color: #3b2118;
+  color: var(--brown);
 }
 
 /* Respektér brugere der ikke vil have animationer */

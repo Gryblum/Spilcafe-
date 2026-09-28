@@ -125,7 +125,6 @@ function showHome() {
   if (els.homeView) els.homeView.hidden = false;
   if (els.gameView) els.gameView.hidden = true;
   if (bookingView) bookingView.hidden = true;
-  toggleHomeSocial(true);
   document
     .querySelectorAll(".tabbar .tab")
     .forEach((t) => t.classList.remove("active"));
@@ -446,7 +445,7 @@ function render() {
   const sorted = applySort(filtered, f.sort);
 
   if (!sorted.length) {
-    els.list.innerHTML = `<p style="color:#7b5647">Ingen spil matcher dine filtre.</p>`;
+    els.list.innerHTML = `<p style="color:var(--text-soft)">Ingen spil matcher dine filtre.</p>`;
     updateBackIcon();
     return;
   }
