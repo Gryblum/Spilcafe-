@@ -3,8 +3,8 @@
   ========================================================= */
 :root {
   --cream: #f5ebdc;
-  --brown: #41120c;
-  --brown-2: #5b2a1a;
+  --brown: #861a19;
+  --brown-2: #601210;
   --text: #2b1a14;
   --light: #fff8f0;
   --muted: #bdaaa1;
@@ -908,8 +908,45 @@ FORSIDE (home-view)
 
 .home-hero {
   display: grid;
-  gap: 16px;
-  margin-bottom: 28px;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.home-hero-text {
+  display: grid;
+  gap: 12px;
+}
+
+.home-hero-img {
+  order: -1; /* på mobil kommer billedet øverst */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+@media (min-width: 800px) {
+  .home {
+    max-width: 1100px;
+    text-align: left;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+.home-hero-img {
+  order: 0; /* på desktop står billedet til højre for teksten */
+}
+
+.home-intro {
+  margin: 0;
 }
 
 .home-tagline {
@@ -918,14 +955,6 @@ FORSIDE (home-view)
   font-weight: 800;
   color: var(--brown);
   margin: 8px 0 0;
-}
-
-.home-intro {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.6;
-  color: var(--text);
-  max-width: 60ch;
-  margin: 0 auto;
 }
 
 .home-actions {
