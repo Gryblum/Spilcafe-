@@ -4,6 +4,27 @@ const DATA_URL =
   "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json";
 const STORAGE_KEY = "favs"; // localStorage-nøgle til favoritter
 
+// IKONER (inline SVG – arver farve fra CSS via currentColor)
+const ICONS = {
+  users:
+    '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14c2.5 0 4 1.8 4 4.5"/>',
+  star: '<path d="M12 3.5l2.6 5.5 5.9.7-4.4 4 1.2 5.8-5.3-2.9-5.3 2.9 1.2-5.8-4.4-4 5.9-.7z"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  person: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',
+  tag: '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/>',
+  speech: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
+  pin: '<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>',
+  x: '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+  heart:
+    '<path d="M12 20.5C12 20.5 4 15.5 4 9.5A4.5 4.5 0 0 1 12 6.7 4.5 4.5 0 0 1 20 9.5c0 6-8 11-8 11z"/>',
+};
+
+function icon(name) {
+  return `<svg class="icon icon-${name}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`;
+}
+
 // DOM-REFERENCER (samlet ét sted)
 
 const els = {
@@ -223,9 +244,11 @@ function bindEvents() {
       if (FAVS.has(id)) {
         FAVS.delete(id);
         favBtn.classList.remove("active");
+        favBtn.setAttribute("aria-pressed", "false");
       } else {
         FAVS.add(id);
         favBtn.classList.add("active");
+        favBtn.setAttribute("aria-pressed", "true");
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...FAVS]));
       updateFavTabCounter();
@@ -433,7 +456,7 @@ function render() {
 }
 
 function gameCard(g) {
-  const favActive = FAVS.has(String(g.id)) ? "active" : "";
+  const isFav = FAVS.has(String(g.id));
   const players = g.players ? `${g.players.min}–${g.players.max}` : "—";
   const rating = Number.isFinite(g.rating) ? g.rating.toFixed(1) : "—";
   const badgeAvail = g.available ? `<span class="badge">Ledig</span>` : ``;
@@ -441,18 +464,15 @@ function gameCard(g) {
   return `
    <article class="card" data-id="${g.id}">
      <div class="thumb">
-       <img src="${g.image}" alt="${escapeHtml(
-    g.title
-  )}" style="object-fit:contain;">
+       <img src="${g.image}" alt="${escapeHtml(g.title)}" style="object-fit:contain;">
        <div class="badges">${badgeAvail}</div>
-       <button class="fav ${favActive}" data-fav-id="${
-    g.id
-  }" aria-label="Føj til favoritter">❤</button>
+       <button class="fav ${isFav ? "active" : ""}" data-fav-id="${g.id}"
+         aria-label="Føj til favoritter" aria-pressed="${isFav}">${icon("heart")}</button>
      </div>
      <h3>${escapeHtml(g.title)}</h3>
      <div class="meta">
-       <span>👥 ${players}</span>
-       <span>⭐ ${rating}</span>
+       <span>${icon("users")}<span class="sr-only">Spillere: </span>${players}</span>
+       <span>${icon("star")}<span class="sr-only">Rating: </span>${rating}</span>
      </div>
      <div class="extra">
        ${g.shelf ? `<span>Placering: ${escapeHtml(g.shelf)}</span>` : ""}
@@ -503,10 +523,18 @@ function openModalById(id) {
   // Titel + meta
   mTitle.textContent = g.title;
   mMeta.innerHTML = [
-    Number.isFinite(g.rating) ? `⭐ ${g.rating.toFixed(1)}` : null,
-    g.players ? `👥 ${g.players.min}–${g.players.max}` : null,
-    Number.isFinite(g.playtime) ? `⏱️ ${g.playtime} min` : null,
-    g.age ? `👶 ${g.age}+` : null,
+    Number.isFinite(g.rating)
+      ? `${icon("star")}<span class="sr-only">Rating: </span>${g.rating.toFixed(1)}`
+      : null,
+    g.players
+      ? `${icon("users")}<span class="sr-only">Spillere: </span>${g.players.min}–${g.players.max}`
+      : null,
+    Number.isFinite(g.playtime)
+      ? `${icon("clock")}<span class="sr-only">Spilletid: </span>${g.playtime} min`
+      : null,
+    g.age
+      ? `${icon("person")}<span class="sr-only">Alder: </span>${g.age}+`
+      : null,
   ]
     .filter(Boolean)
     .map((x) => `<span>${x}</span>`)
@@ -515,12 +543,12 @@ function openModalById(id) {
   // Beskrivelse + detaljer
   mDesc.textContent = g.description || "";
   mDetails.innerHTML = [
-    g.genre ? `<span>🎭 Kategori: ${escapeHtml(g.genre)}</span>` : "",
-    g.language ? `<span>🗣️ Sprog: ${escapeHtml(g.language)}</span>` : "",
-    g.difficulty ? `<span>🎯 Sværhed: ${escapeHtml(g.difficulty)}</span>` : "",
-    g.shelf ? `<span>📍 Placering: ${escapeHtml(g.shelf)}</span>` : "",
+    g.genre ? `<span>${icon("tag")} Kategori: ${escapeHtml(g.genre)}</span>` : "",
+    g.language ? `<span>${icon("speech")} Sprog: ${escapeHtml(g.language)}</span>` : "",
+    g.difficulty ? `<span>${icon("target")} Sværhed: ${escapeHtml(g.difficulty)}</span>` : "",
+    g.shelf ? `<span>${icon("pin")} Placering: ${escapeHtml(g.shelf)}</span>` : "",
     g.available != null
-      ? `<span>${g.available ? "✅ Ledig" : "❌ Udlånt"}</span>`
+      ? `<span>${icon(g.available ? "check" : "x")} ${g.available ? "Ledig" : "Udlånt"}</span>`
       : "",
   ].join("");
 
@@ -997,7 +1025,7 @@ function renderStepSuccess() {
   bookingStage.innerHTML = `
    ${logo()}
    <div class="booking-success">
-     <div class="success-big">Tak for din booking 😊</div>
+     <div class="success-big">${icon("check")} Tak for din booking</div>
      <div class="booking-summary" style="text-align:left">
        <div><strong>Sted</strong><br>${booking.cafe.name} – ${
     booking.cafe.address
