@@ -95,10 +95,16 @@ let FAVS = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
 // booking-view (reservationsflowet). Disse to funktioner sørger
 // for at kun én visning er synlig ad gangen.
 
+function toggleHomeSocial(visible) {
+  const social = document.getElementById("home-social");
+  if (social) social.hidden = !visible;
+}
+
 function showHome() {
   if (els.homeView) els.homeView.hidden = false;
   if (els.gameView) els.gameView.hidden = true;
   if (bookingView) bookingView.hidden = true;
+  toggleHomeSocial(true);
   document
     .querySelectorAll(".tabbar .tab")
     .forEach((t) => t.classList.remove("active"));
@@ -109,6 +115,7 @@ function showGames() {
   if (els.homeView) els.homeView.hidden = true;
   if (els.gameView) els.gameView.hidden = false;
   if (bookingView) bookingView.hidden = true;
+  toggleHomeSocial(false);
   updateBackIcon();
 }
 
@@ -728,6 +735,7 @@ function openBooking() {
   if (els.homeView) els.homeView.hidden = true;
   if (els.gameView) els.gameView.hidden = true;
   bookingView.hidden = false;
+  toggleHomeSocial(false);
   booking.month = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
   booking.step = 1;
   renderBooking();
@@ -767,7 +775,7 @@ function renderBooking() {
 function logo() {
   return `
    <img class="booking-logo"
-     src="https://images.squarespace-cdn.com/content/v1/61fd2c9026a58c435d260f4c/1af90772-e642-4309-a2cb-f4161e36855e/SC-logo-2023-transparant-BG+Small+Crop.png"
+     src="images/spilcafe-logo.png"
      alt="Spilcaféen">
  `;
 }

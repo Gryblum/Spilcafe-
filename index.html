@@ -63,24 +63,24 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="home-social" aria-labelledby="social-title">
-      <h2 id="social-title" class="home-social-title">Følg med<br />i hverdagen</h2>
+      <section class="home-social" id="home-social" aria-labelledby="social-title">
+        <h2 id="social-title" class="home-social-title">Følg med<br />i hverdagen</h2>
 
-      <div class="social-links" aria-label="Sociale medier">
-        <a href="#" class="social-link" aria-label="Facebook">
-          <img src="images/facebook.svg" alt="Facebook" />
-        </a>
+        <div class="social-links" aria-label="Sociale medier">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <img src="images/facebook.svg" alt="Facebook" />
+          </a>
 
-        <a href="#" class="social-link" aria-label="Instagram">
-          <img src="images/instagram.svg" alt="Instagram" />
-        </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <img src="images/instagram.svg" alt="Instagram" />
+          </a>
 
-        <a href="#" class="social-link" aria-label="TikTok">
-          <img src="images/tiktok.svg" alt="TikTok" />
-        </a>
-      </div>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <img src="images/tiktok.svg" alt="TikTok" />
+          </a>
+        </div>
+      </section>
     </section>
 
     <!-- BOOKING FLOW (skjult indtil man trykker "Reserver bord") -->
@@ -89,11 +89,13 @@
 </section>
 
   <main class="page" id="game-view" hidden>
-    <!-- Søg som i designet -->
-    <div class="searchbar">
-      <input type="text" id="search-input" placeholder="Søg" />
-      <button class="icon-btn" aria-label="Søg">🔍</button>
-    </div>
+    
+  <button class="icon-btn" aria-label="Søg">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="11" cy="11" r="7" />
+    <path d="M20 20l-4-4" />
+  </svg>
+</button>
   
     <!-- Filtre og ryd filtre -->
     <div class="filterbar">
