@@ -1,7 +1,6 @@
 // DATA & KONSTANTER
 
-const DATA_URL =
-  "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json";
+const DATA_URL = "data/games.json";
 const STORAGE_KEY = "favs"; // localStorage-nøgle til favoritter
 
 // IKONER (inline SVG – arver farve fra CSS via currentColor)
