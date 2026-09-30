@@ -1019,6 +1019,10 @@ body {
   border-radius: var(--radius);
 }
 
+.home-carousel-track img[src*="stemning3"] {
+  object-position: center 100%;
+}
+
 /* --- "Følg med i hverdagen" --- */
 .home-social {
   display: grid;
